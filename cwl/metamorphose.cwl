@@ -5,22 +5,6 @@ label: metamorphose
 $namespaces:
   sbg: 'https://www.sevenbridges.com/'
 inputs:
-  - id: rna_a_bam
-    type: File
-    'sbg:x': -1804.238037109375
-    'sbg:y': -1245.9420166015625
-  - id: rna_t_bam
-    type: File
-    'sbg:x': -1808.0252685546875
-    'sbg:y': -1113.8634033203125
-  - id: dna_a_bam
-    type: File
-    'sbg:x': -1801.258544921875
-    'sbg:y': -705.8907470703125
-  - id: dna_t_bam
-    type: File
-    'sbg:x': -1807.6009521484375
-    'sbg:y': -567.8361206054688
   - id: reference_fasta
     type: File
     'sbg:x': -1909.536865234375
@@ -29,6 +13,22 @@ inputs:
     type: File
     'sbg:x': -1910.0408935546875
     'sbg:y': -830.0761108398438
+  - id: dna_a_input_bam
+    type: File
+    'sbg:x': -1781.651611328125
+    'sbg:y': -681.138671875
+  - id: dna_t_input_bam
+    type: File
+    'sbg:x': -1784.9244384765625
+    'sbg:y': -546.8587646484375
+  - id: rna_t_input_bam
+    type: File
+    'sbg:x': -1783.3668212890625
+    'sbg:y': -1115.5501708984375
+  - id: rna_a_input_bam
+    type: File
+    'sbg:x': -1783.45849609375
+    'sbg:y': -1236
 outputs:
   - id: rna_a_output_vaf
     outputSource:
@@ -54,35 +54,11 @@ outputs:
     type: File?
     'sbg:x': -1118.653076171875
     'sbg:y': -656
-  - id: rna_a_filtered_bam
-    outputSource:
-      - slate_2/filtered_bam
-    type: File?
-    'sbg:x': -1255.87646484375
-    'sbg:y': -1379.7415771484375
-  - id: rna_t_filtered_bam
-    outputSource:
-      - slate/filtered_bam
-    type: File?
-    'sbg:x': -1256
-    'sbg:y': -1264.617919921875
-  - id: dna_t_filtered_bam
-    outputSource:
-      - slate_3/filtered_bam
-    type: File?
-    'sbg:x': -1258.2921142578125
-    'sbg:y': -367.89886474609375
-  - id: dna_a_filtered_bam
-    outputSource:
-      - slate_1/filtered_bam
-    type: File?
-    'sbg:x': -1262.606689453125
-    'sbg:y': -502.3819885253906
 steps:
   - id: slate
     in:
       - id: input_bam
-        source: rna_t_bam
+        source: rna_t_input_bam
       - id: positions
         source: positions
       - id: reference_fasta
@@ -97,9 +73,7 @@ steps:
   - id: slate_1
     in:
       - id: input_bam
-        source:
-          - dna_bam
-          - dna_a_bam
+        source: dna_a_input_bam
       - id: positions
         source: positions
       - id: reference_fasta
@@ -134,7 +108,7 @@ steps:
   - id: slate_2
     in:
       - id: input_bam
-        source: rna_a_bam
+        source: rna_a_input_bam
       - id: positions
         source: positions
       - id: reference_fasta
@@ -159,7 +133,7 @@ steps:
   - id: slate_3
     in:
       - id: input_bam
-        source: dna_t_bam
+        source: dna_t_input_bam
       - id: positions
         source: positions
       - id: reference_fasta
@@ -185,4 +159,3 @@ steps:
     'sbg:y': -654.7102661132812
 requirements:
   - class: ScatterFeatureRequirement
-  - class: MultipleInputFeatureRequirement
