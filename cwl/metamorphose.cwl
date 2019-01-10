@@ -29,7 +29,31 @@ inputs:
     type: File
     'sbg:x': -1910.0408935546875
     'sbg:y': -830.0761108398438
-outputs: []
+outputs:
+  - id: rna_a_output_vaf
+    outputSource:
+      - quartzite_2/output_vaf
+    type: File?
+    'sbg:x': -1117.65625
+    'sbg:y': -1145
+  - id: rna_t_output_vaf
+    outputSource:
+      - quartzite_1/output_vaf
+    type: File?
+    'sbg:x': -1116.653076171875
+    'sbg:y': -990
+  - id: dna_a_output_vaf
+    outputSource:
+      - quartzite/output_vaf
+    type: File?
+    'sbg:x': -1117
+    'sbg:y': -819
+  - id: dna_t_output_vaf
+    outputSource:
+      - quartzite_3/output_vaf
+    type: File?
+    'sbg:x': -1118.653076171875
+    'sbg:y': -656
 steps:
   - id: slate
     in:
