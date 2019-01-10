@@ -143,8 +143,6 @@ steps:
       - id: filtered_bam
     run: ./slate.cwl
     label: slate
-    scatter:
-      - positions
     'sbg:x': -1471.6302490234375
     'sbg:y': -658.1072998046875
   - id: quartzite_3
@@ -157,5 +155,4 @@ steps:
     label: quartzite
     'sbg:x': -1264.1092529296875
     'sbg:y': -654.7102661132812
-requirements:
-  - class: ScatterFeatureRequirement
+requirements: []

@@ -4,15 +4,15 @@ reference_fasta:
 positions:
   class: File
   path: ../../tests/data/positions.bed
-dna_a_bam:
+dna_a_input_bam:
   class: File
   path: ../../tests/data/test.dna.a.bam
-dna_t_bam:
+dna_t_input_bam:
   class: File
   path: ../../tests/data/test.dna.t.bam
-rna_a_bam:
+rna_a_input_bam:
   class: File
   path: ../../tests/data/test.rna.a.bam
-rna_t_bam:
+rna_t_input_bam:
   class: File
   path: ../../tests/data/test.rna.t.bam

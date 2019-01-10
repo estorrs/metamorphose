@@ -1,0 +1,4 @@
+*.bai
+*.fai
+*.swp
+cwl/tests/test_results
