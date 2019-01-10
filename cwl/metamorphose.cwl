@@ -54,6 +54,30 @@ outputs:
     type: File?
     'sbg:x': -1118.653076171875
     'sbg:y': -656
+  - id: rna_a_filtered_bam
+    outputSource:
+      - slate_2/filtered_bam
+    type: File?
+    'sbg:x': -1255.87646484375
+    'sbg:y': -1379.7415771484375
+  - id: rna_t_filtered_bam
+    outputSource:
+      - slate/filtered_bam
+    type: File?
+    'sbg:x': -1256
+    'sbg:y': -1264.617919921875
+  - id: dna_t_filtered_bam
+    outputSource:
+      - slate_3/filtered_bam
+    type: File?
+    'sbg:x': -1258.2921142578125
+    'sbg:y': -367.89886474609375
+  - id: dna_a_filtered_bam
+    outputSource:
+      - slate_1/filtered_bam
+    type: File?
+    'sbg:x': -1262.606689453125
+    'sbg:y': -502.3819885253906
 steps:
   - id: slate
     in:
@@ -145,6 +169,8 @@ steps:
       - id: filtered_bam
     run: ./slate.cwl
     label: slate
+    scatter:
+      - positions
     'sbg:x': -1471.6302490234375
     'sbg:y': -658.1072998046875
   - id: quartzite_3
@@ -158,4 +184,5 @@ steps:
     'sbg:x': -1264.1092529296875
     'sbg:y': -654.7102661132812
 requirements:
+  - class: ScatterFeatureRequirement
   - class: MultipleInputFeatureRequirement
