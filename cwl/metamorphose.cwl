@@ -32,30 +32,30 @@ inputs:
 outputs:
   - id: rna_a_output_vaf
     outputSource:
-      - quartzite_2/output_vaf
+      - rna_a_quartzite/output_vaf
     type: File?
     'sbg:x': -1117.65625
     'sbg:y': -1145
   - id: rna_t_output_vaf
     outputSource:
-      - quartzite_1/output_vaf
+      - rna_t_quartzite/output_vaf
     type: File?
     'sbg:x': -1116.653076171875
     'sbg:y': -990
   - id: dna_a_output_vaf
     outputSource:
-      - quartzite/output_vaf
+      - dna_a_quartzite/output_vaf
     type: File?
     'sbg:x': -1117
     'sbg:y': -819
   - id: dna_t_output_vaf
     outputSource:
-      - quartzite_3/output_vaf
+      - dna_t_quartzite/output_vaf
     type: File?
     'sbg:x': -1118.653076171875
     'sbg:y': -656
 steps:
-  - id: slate
+  - id: rna_t_slate
     in:
       - id: input_bam
         source: rna_t_input_bam
@@ -70,7 +70,7 @@ steps:
     label: slate
     'sbg:x': -1464.3424072265625
     'sbg:y': -981.7960815429688
-  - id: slate_1
+  - id: dna_a_slate
     in:
       - id: input_bam
         source: dna_a_input_bam
@@ -85,27 +85,27 @@ steps:
     label: slate
     'sbg:x': -1468
     'sbg:y': -820.5736694335938
-  - id: quartzite
+  - id: dna_a_quartzite
     in:
       - id: input_readcount
-        source: slate_1/readcount
+        source: dna_a_slate/readcount
     out:
       - id: output_vaf
     run: ./quartzite.cwl
     label: quartzite
     'sbg:x': -1260.0546875
     'sbg:y': -819.258544921875
-  - id: quartzite_1
+  - id: rna_t_quartzite
     in:
       - id: input_readcount
-        source: slate/readcount
+        source: rna_t_slate/readcount
     out:
       - id: output_vaf
     run: ./quartzite.cwl
     label: quartzite
     'sbg:x': -1258
     'sbg:y': -989.1931762695312
-  - id: slate_2
+  - id: rna_a_slate
     in:
       - id: input_bam
         source: rna_a_input_bam
@@ -120,17 +120,17 @@ steps:
     label: slate
     'sbg:x': -1462
     'sbg:y': -1134.1805419921875
-  - id: quartzite_2
+  - id: rna_a_quartzite
     in:
       - id: input_readcount
-        source: slate_2/readcount
+        source: rna_a_slate/readcount
     out:
       - id: output_vaf
     run: ./quartzite.cwl
     label: quartzite
     'sbg:x': -1263.3970947265625
     'sbg:y': -1143.029296875
-  - id: slate_3
+  - id: dna_t_slate
     in:
       - id: input_bam
         source: dna_t_input_bam
@@ -145,14 +145,17 @@ steps:
     label: slate
     'sbg:x': -1471.6302490234375
     'sbg:y': -658.1072998046875
-  - id: quartzite_3
+  - id: dna_t_quartzite
     in:
       - id: input_readcount
-        source: slate_3/readcount
+        source: dna_t_slate/readcount
     out:
       - id: output_vaf
     run: ./quartzite.cwl
     label: quartzite
+    scatter:
+      - bases
     'sbg:x': -1264.1092529296875
     'sbg:y': -654.7102661132812
-requirements: []
+requirements:
+  - class: ScatterFeatureRequirement
