@@ -30,30 +30,18 @@ inputs:
     'sbg:x': -1783.45849609375
     'sbg:y': -1236
 outputs:
-  - id: rna_a_output_vaf
+  - id: table_output
     outputSource:
-      - rna_a_quartzite/output_vaf
+      phyllite/table_output
     type: File?
-    'sbg:x': -1117.65625
-    'sbg:y': -1145
-  - id: rna_t_output_vaf
+    'sbg:x': -855.859619140625
+    'sbg:y': -988.9166870117188
+  - id: json_output
     outputSource:
-      - rna_t_quartzite/output_vaf
+      phyllite/json_output
     type: File?
-    'sbg:x': -1116.653076171875
-    'sbg:y': -990
-  - id: dna_a_output_vaf
-    outputSource:
-      - dna_a_quartzite/output_vaf
-    type: File?
-    'sbg:x': -1117
-    'sbg:y': -819
-  - id: dna_t_output_vaf
-    outputSource:
-      - dna_t_quartzite/output_vaf
-    type: File?
-    'sbg:x': -1118.653076171875
-    'sbg:y': -656
+    'sbg:x': -857.8939819335938
+    'sbg:y': -799.717529296875
 steps:
   - id: rna_t_slate
     in:
@@ -153,9 +141,29 @@ steps:
       - id: output_vaf
     run: ./quartzite.cwl
     label: quartzite
-    scatter:
-      - bases
     'sbg:x': -1264.1092529296875
     'sbg:y': -654.7102661132812
-requirements:
-  - class: ScatterFeatureRequirement
+  - id: phyllite
+    in:
+      - id: dna_normal_vaf
+        source: dna_a_quartzite/output_vaf
+      - id: dna_tumor_vaf
+        source: dna_t_quartzite/output_vaf
+      - id: rna_normal_vaf
+        source: rna_a_quartzite/output_vaf
+      - id: rna_tumor_vaf
+        source: rna_t_quartzite/output_vaf
+      - id: min_depth
+        default: 10
+      - id: max_dna_minor_vaf
+        default: 0.001
+      - id: min_rna_minor_vaf
+        default: '.05'
+    out:
+      - id: table_output
+      - id: json_output
+    run: ./phyllite.cwl
+    label: phyllite
+    'sbg:x': -1022.6486206054688
+    'sbg:y': -890
+requirements: []
