@@ -30,18 +30,18 @@ inputs:
     'sbg:x': -1783.45849609375
     'sbg:y': -1236
 outputs:
-  - id: table_output
-    outputSource:
-      phyllite/table_output
-    type: File?
-    'sbg:x': -855.859619140625
-    'sbg:y': -988.9166870117188
   - id: json_output
     outputSource:
       phyllite/json_output
     type: File?
     'sbg:x': -857.8939819335938
     'sbg:y': -799.717529296875
+  - id: table_output
+    outputSource:
+      annotation_station/output_file
+    type: File?
+    'sbg:x': -513.2862548828125
+    'sbg:y': -989
 steps:
   - id: rna_t_slate
     in:
@@ -166,4 +166,18 @@ steps:
     label: phyllite
     'sbg:x': -1022.6486206054688
     'sbg:y': -890
+  - id: annotation_station
+    in:
+      - id: input_type
+        default: tsv
+      - id: input_header
+        default: true
+      - id: input_file
+        source: phyllite/table_output
+    out:
+      - id: output_file
+    run: ./annotation_station.cwl
+    label: annotation-station
+    'sbg:x': -655
+    'sbg:y': -988
 requirements: []
