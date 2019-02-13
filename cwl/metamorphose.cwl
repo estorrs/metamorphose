@@ -172,6 +172,10 @@ steps:
         default: tsv
       - id: input_header
         default: true
+      - id: annotate_repeats
+        default: true
+      - id: annotate_transvar
+        default: true
       - id: input_file
         source: phyllite/table_output
     out:
