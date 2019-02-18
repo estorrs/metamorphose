@@ -29,6 +29,14 @@ inputs:
     type: File
     'sbg:x': -1783.45849609375
     'sbg:y': -1236
+  - id: repeats_table
+    type: File?
+    'sbg:x': -818.4765625
+    'sbg:y': -1154
+  - id: primary_transcripts
+    type: File?
+    'sbg:x': -816
+    'sbg:y': -1037
 outputs:
   - id: json_output
     outputSource:
@@ -45,6 +53,10 @@ outputs:
 steps:
   - id: rna_t_slate
     in:
+      - id: min_base_quality
+        default: 25
+      - id: min_mapping_quality
+        default: 20
       - id: input_bam
         source: rna_t_input_bam
       - id: positions
@@ -60,6 +72,10 @@ steps:
     'sbg:y': -981.7960815429688
   - id: dna_a_slate
     in:
+      - id: min_base_quality
+        default: 25
+      - id: min_mapping_quality
+        default: 20
       - id: input_bam
         source: dna_a_input_bam
       - id: positions
@@ -95,6 +111,10 @@ steps:
     'sbg:y': -989.1931762695312
   - id: rna_a_slate
     in:
+      - id: min_base_quality
+        default: 25
+      - id: min_mapping_quality
+        default: 20
       - id: input_bam
         source: rna_a_input_bam
       - id: positions
@@ -120,6 +140,10 @@ steps:
     'sbg:y': -1143.029296875
   - id: dna_t_slate
     in:
+      - id: min_base_quality
+        default: 25
+      - id: min_mapping_quality
+        default: 20
       - id: input_bam
         source: dna_t_input_bam
       - id: positions
@@ -155,10 +179,14 @@ steps:
         source: rna_t_quartzite/output_vaf
       - id: min_depth
         default: 10
+      - id: max_dna_minor_count
+        default: 1
       - id: max_dna_minor_vaf
-        default: 0.001
+        default: 0.1
+      - id: min_rna_minor_count
+        default: 3
       - id: min_rna_minor_vaf
-        default: '.05'
+        default: '.1'
     out:
       - id: table_output
       - id: json_output
@@ -174,8 +202,12 @@ steps:
         default: true
       - id: annotate_repeats
         default: true
+      - id: repeats_table
+        source: repeats_table
       - id: annotate_transvar
         default: true
+      - id: primary_transcripts
+        source: primary_transcripts
       - id: input_file
         source: phyllite/table_output
     out:
