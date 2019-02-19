@@ -2,3 +2,4 @@
 *.fai
 *.swp
 cwl/tests/test_results
+tests/katmai_data/
