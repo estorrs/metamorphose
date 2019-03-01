@@ -1,0 +1,18 @@
+reference_fasta:
+  class: File
+  path: ../../tests/katmai_data/GRCh38.d1.vd1.fa
+positions:
+  class: File
+  path: ../../tests/katmai_data/positions.combined.chr22.bed
+primary_transcripts:
+  class: File
+  path: ../../tests/katmai_data/gene_to_primary_transcript.grch38.tsv
+repeats_table:
+  class: File
+  path: ../../tests/katmai_data/repeats_table.grch38.tsv
+dna_t_input_bam:
+  class: File
+  path: ../../tests/katmai_data/test.dna.t.chr22.bam
+rna_t_input_bam:
+  class: File
+  path: ../../tests/katmai_data/test.rna.t.chr22.bam
