@@ -46,10 +46,10 @@ outputs:
     'sbg:y': -799.717529296875
   - id: table_output
     outputSource:
-      annotation_station/output_file
+      annotation_station_1/output_file
     type: File?
-    'sbg:x': -513.2862548828125
-    'sbg:y': -989
+    'sbg:x': -445.3770446777344
+    'sbg:y': -886.5409545898438
 steps:
   - id: rna_t_slate
     in:
@@ -194,13 +194,21 @@ steps:
     label: phyllite
     'sbg:x': -1022.6486206054688
     'sbg:y': -890
-  - id: annotation_station
+  - id: annotation_station_1
     in:
       - id: input_type
         default: tsv
+      - id: reference_version
+        default: hg38
+      - id: rna_editing_identity_threshold
+        default: '.95'
+      - id: rna_editing_coverage_threshold
+        default: '.9'
       - id: input_header
         default: true
       - id: annotate_repeats
+        default: true
+      - id: annotate_blast
         default: true
       - id: repeats_table
         source: repeats_table
@@ -208,12 +216,14 @@ steps:
         default: true
       - id: primary_transcripts
         source: primary_transcripts
+      - id: blast_input_bam
+        source: rna_t_slate/filtered_bam
       - id: input_file
         source: phyllite/table_output
     out:
       - id: output_file
     run: ./annotation_station.cwl
     label: annotation-station
-    'sbg:x': -655
-    'sbg:y': -988
+    'sbg:x': -645.6967163085938
+    'sbg:y': -933.8114624023438
 requirements: []

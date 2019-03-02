@@ -128,9 +128,17 @@ steps:
     in:
       - id: input_type
         default: tsv
+      - id: reference_version
+        default: hg19
+      - id: rna_editing_identity_threshold
+        default: '.95'
+      - id: rna_editing_coverage_threshold
+        default: '.9'
       - id: input_header
         default: true
       - id: annotate_repeats
+        default: true
+      - id: annotate_blast
         default: true
       - id: repeats_table
         source: repeats_table
@@ -138,6 +146,8 @@ steps:
         default: true
       - id: primary_transcripts
         source: primary_transcripts
+      - id: blast_input_bam
+        source: rna_t_slate/filtered_bam
       - id: input_file
         source: phyllite/table_output
     out:
@@ -146,4 +156,12 @@ steps:
     label: annotation-station
     'sbg:x': -655
     'sbg:y': -988
+  - id: annotation_station_1
+    in: []
+    out:
+      - id: output_file
+    run: ./annotation_station.cwl
+    label: annotation-station
+    'sbg:x': -542.4765625
+    'sbg:y': -737
 requirements: []
