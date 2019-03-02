@@ -32,13 +32,13 @@ inputs:
 outputs:
   - id: json_output
     outputSource:
-      phyllite/json_output
+      - phyllite/json_output
     type: File?
     'sbg:x': -857.8939819335938
     'sbg:y': -799.717529296875
   - id: table_output
     outputSource:
-      annotation_station/output_file
+      - annotation_station/output_file
     type: File?
     'sbg:x': -513.2862548828125
     'sbg:y': -989
@@ -147,7 +147,7 @@ steps:
       - id: primary_transcripts
         source: primary_transcripts
       - id: blast_input_bam
-        source: rna_t_slate/filtered_bam
+        source: rna_t_input_bam
       - id: input_file
         source: phyllite/table_output
     out:
